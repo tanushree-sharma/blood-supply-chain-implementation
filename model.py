@@ -151,11 +151,11 @@ model.addConstrs( (
 
 # constraint (5), (6)
 model.addConstrs((
-    (av_i[j,0] - av_y[j,0]) == (N[j] - B[j,0]) 
+    (av_i[j,0] - av_y[j,0]) == (Nj[j] - Bjt[j,0]) 
     for j in J if j not in {16,17} 
     ), "(5)")
 model.addConstrs((
-    av_i[j,t] == (av_i[j,t-1] + av_q[j,t-1] + av_y[j,t] - B[j,t]) 
+    av_i[j,t] == (av_i[j,t-1] + av_q[j,t-1] + av_y[j,t] - Bjt[j,t]) 
     for t in T for j in J if (j not in {16,17} and t > 0) 
     ), "(6)")
 
@@ -165,7 +165,7 @@ model.addConstrs((
     for p in P 
     ), "(7)")
 model.addConstrs((
-    av_r[p,s-1,0] == (X[p,s] - av_u[p,s,0]) 
+    av_r[p,s-1,0] == (Xps[p,s] - av_u[p,s,0]) 
     for p in P for s in S if s > 0
     ), "(8)")
 model.addConstrs((
